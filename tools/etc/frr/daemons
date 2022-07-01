@@ -14,7 +14,7 @@
 #
 # The watchfrr, zebra and staticd daemons are always started.
 #
-bgpd=no
+bgpd=yes
 ospfd=no
 ospf6d=no
 ripd=no
@@ -30,7 +30,7 @@ pbrd=no
 bfdd=no
 fabricd=no
 vrrpd=no
-pathd=no
+pathd=yes
 
 #
 # If this option is set the /etc/init.d/frr script automatically loads
@@ -38,8 +38,8 @@ pathd=no
 # Check /etc/pam.d/frr if you intend to use "vtysh"!
 #
 vtysh_enable=yes
-zebra_options="  -A 127.0.0.1 -s 90000000"
-bgpd_options="   -A 127.0.0.1"
+zebra_options="  -A 127.0.0.1 -s 90000000 -M fpm:protobuf"
+bgpd_options="   -A 127.0.0.1 -M grpc:50052"
 ospfd_options="  -A 127.0.0.1"
 ospf6d_options=" -A ::1"
 ripd_options="   -A 127.0.0.1"
@@ -52,11 +52,11 @@ eigrpd_options=" -A 127.0.0.1"
 babeld_options=" -A 127.0.0.1"
 sharpd_options=" -A 127.0.0.1"
 pbrd_options="   -A 127.0.0.1"
-staticd_options="-A 127.0.0.1"
+staticd_options="-A 127.0.0.1 -M grpc:50051"
 bfdd_options="   -A 127.0.0.1"
 fabricd_options="-A 127.0.0.1"
 vrrpd_options="  -A 127.0.0.1"
-pathd_options="  -A 127.0.0.1"
+pathd_options="  -A 127.0.0.1 -M grpc:50053"
 
 # configuration profile
 #

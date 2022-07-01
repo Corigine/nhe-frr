@@ -4,6 +4,17 @@ endif
 
 grpc_libfrrgrpc_pb_la_LDFLAGS = $(LIB_LDFLAGS) -version-info 0:0:0
 grpc_libfrrgrpc_pb_la_CPPFLAGS = $(AM_CPPFLAGS) $(GRPC_CXXFLAGS)
+grpc_libfrrgrpc_pb_la_LIBADD =  /usr/lib/libprotobuf.a \
+                                /usr/lib/libgrpc++_reflection.a \
+                                /usr/lib/libgrpc++.a \
+                                /usr/lib/libgrpc.a \
+                                /usr/lib/libssl.a \
+                                /usr/lib/libcrypto.a \
+                                /usr/lib/libz.a \
+                                /usr/lib//libcares.a \
+                                /usr/lib/libabsl_bad_optional_access.a \
+                                /usr/lib/libgpr.a \
+                                /usr/lib/libupb.a
 
 if GRPC
 nodist_grpc_libfrrgrpc_pb_la_SOURCES = \

@@ -71,10 +71,10 @@
 
 ### dist
 
-*.tar.?z
+#*.tar.?z
 *.tar.?z.asc
 *.tar.asc
-*.deb
+#*.deb
 *.ddeb
 *.dsc
 *.changes
