@@ -14,13 +14,19 @@ export PATH="$MY_INSTALL_DIR/bin:$PATH"
 #3.update cmake-3.19.6
 cd third_party/cmake-3.19.6/
 sh cmake-linux.sh -- --skip-license --prefix=$MY_INSTALL_DIR
-cd ..
 
 #6.make grpc v1.46.x
-cd grpc-v1.46.x/
-tar -zxvf grpc.tar.gz
-cd grpc
+cd /
+if [ -d "/grpc" ]; then
+    cd grpc/
+else
+    git clone -b v1.46.x http://10.9.4.88:3001/sdwan/grpc.git
+    cd grpc/
+fi
+
 tar -zxvf third_party.tar.gz
+sleep 10s
+
 mkdir -p cmake/build
 pushd cmake/build
 make clean
@@ -34,10 +40,9 @@ cp /usr/lib/x86_64-linux-gnu/libabsl_bad_optional_access.a /usr/lib/
 
 chmod 777 -R /usr/lib/*
 
-cd ../../../..
-
+cd $CUR_PATH/
 #7.dpkg install linyang2
-cd libyang2_2.0.112.1-1/
+cd third_party/libyang2_2.0.112.1-1/
 dpkg -i libyang2_2.0.112.1-1_amd64.deb
 dpkg -i libyang2-dev_2.0.112.1-1_amd64.deb
 
