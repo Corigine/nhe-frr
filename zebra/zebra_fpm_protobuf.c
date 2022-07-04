@@ -53,7 +53,9 @@ static Fpm__DeleteRoute *create_delete_route_message(qpb_allocator_t *allocator,
 	}
 
 	fpm__delete_route__init(msg);
-	msg->vrf_id = zvrf_id(rib_dest_vrf(dest));
+    // for fpm syncd support
+	//msg->vrf_id = zvrf_id(rib_dest_vrf(dest));
+    msg->vrf_id = zvrf_table_id(rib_dest_vrf(dest));
 
 	qpb_address_family_set(&msg->address_family, rib_dest_af(dest));
 
@@ -154,8 +156,9 @@ static Fpm__AddRoute *create_add_route_message(qpb_allocator_t *allocator,
 	}
 
 	fpm__add_route__init(msg);
-
-	msg->vrf_id = zvrf_id(rib_dest_vrf(dest));
+    // for fpm syncd support
+	//msg->vrf_id = zvrf_id(rib_dest_vrf(dest));
+	msg->vrf_id = zvrf_table_id(rib_dest_vrf(dest));
 
 	qpb_address_family_set(&msg->address_family, rib_dest_af(dest));
 

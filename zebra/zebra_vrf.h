@@ -208,6 +208,15 @@ static inline vrf_id_t zvrf_id(struct zebra_vrf *zvrf)
 	return zvrf->vrf->vrf_id;
 }
 
+static inline vrf_id_t zvrf_table_id(struct zebra_vrf *zvrf)
+{
+    if (!zvrf)
+    {
+        return VRF_DEFAULT;
+    }
+    return zvrf->table_id;
+}
+
 static inline const char *zvrf_ns_name(struct zebra_vrf *zvrf)
 {
 	if (!zvrf->vrf || !zvrf->vrf->ns_ctxt)
